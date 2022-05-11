@@ -1,0 +1,85 @@
+<?php require('fixed/header.phtml');?>
+    <div class="row container" id="sp_container">
+        <div class="container col s12 l12">
+            <h6 class="center"><strong>Sign Up below</strong></h6>
+        </div>
+        <div class="container row" id="register-fields">
+            <form name="name" method="post" action="<?php echo ($_SERVER['PHP_SELF']); ?> ">
+                <div class="input-field col s12 l12">
+                    <i class="material-icons prefix">mail</i>
+                    <input type="text" name="email1" maxlength="90" required>
+
+                    <label for="email">Email</label>
+                </div><br>
+
+                <div class="input-field col s12 l12">
+                    <i class="material-icons prefix">mail</i>
+                    <input type="text" name="email2" maxlength="90" required>
+
+                    <label for="confirm_email">Confirm Email</label>
+                </div><br>
+
+                <div class="input-field col s12 l6">
+                    <i class="material-icons prefix">enhanced_encryption</i>
+                    <input type="password" name="password1" maxlength="35" required>
+
+                    <label for="password">Password</label>
+                </div><br>
+
+                <div class="input-field col s12 l6">
+                    <i class="material-icons prefix">enhanced_encryption</i>
+                    <input type="password" name="password2" maxlength="35" required>
+
+                    <label for="password">Confirm Password</label>
+                </div><br>
+
+                <div class="input-field col s12 l12">
+                    <i class="material-icons prefix">person</i>
+                    <input type="text" name="username" minlength="3" maxlength="20" required>
+
+                    <label for="username">Username</label>
+                </div><br>
+
+                <?php
+                if (isset($_POST['submit']))
+                {
+                    switch ($view->error)
+                    {
+                        case $view->error = "err_email_exists":
+                            echo "<div class='left red-text container s12 l12' id='error_message2'>
+                                  <p><strong>Email already in use</strong></p></div>";
+                            break;
+
+                        case $view->error = "err_email_format":
+                            echo "<div class='left red-text container s12 l12' id='error_message2'>
+                                  <p><strong>Please use a valid email address</strong></p></div>";
+                            break;
+
+                        case $view->error = "err_email_mismatch":
+                            echo "<div class='left red-text container s12 l12' id='error_message2'>
+                                  <p><strong>Please ensure emails match</strong></p></div>";
+                            break;
+
+                        case $view->error = "err_password_mismatch":
+                            echo "<div class='left red-text container s12 l12' id='error_message2'>
+                                  <p><strong>Please ensure passwords match</strong></p></div>";
+                            break;
+
+                        case $view->error = null:
+                            echo "<div class='left green-text container s12 l12' id='success_message'>
+                                  <p><strong>Sign-Up Successful! Log in 
+                                  <a href='login.php'>here</a></strong></p></div>";
+                            break;
+                        default: null;
+                    }
+                }
+                ?>
+                <div class="container right" id="btn-under-alert">
+                    <input class="btn black right z-depth-2" type="submit"
+                           name="submit" value="Sign Up">
+                </div>
+            </form>
+        </div>
+    </div>
+
+<?php require('fixed/footer.phtml') ?>

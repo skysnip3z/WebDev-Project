@@ -1,0 +1,162 @@
+/* Element-based CSS*/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+    background-color: rgba(80,80,80,0.05);
+}
+
+p {
+    word-wrap: break-word;
+}
+
+/* Class-based CSS*/
+.btn:hover,.btn-large:hover {
+    filter: brightness(120%);
+}
+.card-button button{
+    margin-top: 5px;
+}
+.card-meta span{
+    margin-top: 5px;
+}
+.item-formatting a{
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-bottom: 2px;
+}
+.collection-format{
+    background-color: black;
+}
+.chat-btn{
+    margin-top: 3px;
+}
+.cont-btn{
+    margin-bottom: 7px;
+}
+.them{
+    background: rgba(240, 255, 212, 0.8);
+    border-style: double;
+    margin-bottom: 2px;
+    margin-right: 5vw;
+}
+.me{
+    background: rgba(183, 207, 138, 0.8);
+    border-style: double;
+    margin-bottom: 2px;
+    margin-left: 5vw;
+    word-break: break-all;
+    white-space: normal;
+}
+.username{
+    color: black;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 5px;
+}
+.msg-body{
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.timestamp{
+    text-align: right;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.contact-container{
+    height:165px;
+    max-height:50vh;
+    min-height: 100px;
+    width: 100vw;
+    max-width: 100%;
+    padding: 2px;
+    alignment:center;
+    overflow: auto;
+    word-break: break-all;
+    white-space: normal;
+    display: inline-block;
+}
+.contact{
+    border-style: double;
+    margin: 3px;
+    max-width: 240px;
+    font-weight: bold;
+}
+
+/* ID-based CSS*/
+#sp_container{
+    border: none;
+}
+
+#register-pos{
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+#footer-container{
+    margin-top: 20px;
+}
+
+#ls-header div{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#login-container{
+    margin-top: 30px;
+}
+
+#top-nav ul li:hover{
+    background-color: rgba(80,80,80,0.90);
+}
+#top-nav a{
+    color:white;
+}
+#category-split{
+    margin-top: 20px;
+    background-color: lightgrey;
+}
+#category-split h6{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#error_message{
+    font-size: small;
+    font-style: italic;
+    margin-left: 50px;
+}
+#error_message2{
+    font-size: 14px;
+    font-style: italic;
+    margin-left: 50px;
+}
+#btn-under-alert{
+    margin-top: 20px;
+}
+#content-container{
+    margin-top: 30px;
+}
+#chat-box{
+    color: black;
+    height:100%;
+    max-height:50vh;
+    min-height: 50vh;
+    width: 100%;
+    max-width: 100%;
+    padding: 2px;
+    alignment: left;
+    overflow-y: auto;
+    word-break: break-all;
+    white-space: normal;
+}
+#typing{
+    font-size: 13px;
+    font-style: italic;
+    font-weight: bold;
+}

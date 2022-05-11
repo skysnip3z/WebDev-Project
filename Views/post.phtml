@@ -1,0 +1,118 @@
+<?php require('fixed/header.phtml');?>
+<?php
+if(isset($_SESSION['user']))
+{
+    echo "<div class=\"container row z-depth-3\" id=\"category-split\">
+    <form class=\"col s6 l6 left-align grey lighten-2\" method='post' action='{$_SERVER['PHP_SELF']}'>
+        <input hidden>
+        <button class=\"btn blue-grey darken-2\" name=\"add\" value=\"add\">
+            Watchlist +</button>
+    </form>
+    <form class=\"col s6 l6 right-align grey lighten-2\" method='post' action='{$_SERVER['PHP_SELF']}'>
+        <input hidden>
+        <button class=\"btn blue-grey darken-2 z-depth-2\" name=\"reply\" value=\"reply\">Post Reply</button>
+    </form>
+</div>";
+}
+?>
+    <div class="container row" id="ls-header">
+        <div class="col s12 l8 offset-l6 pull-l4 center">
+            <div class="card">
+                <div class="card row center grey lighten-1 z-depth-2">
+                    <span class="hide-on-med-and-down card-meta col l6 center">
+                        <strong>
+                        <?php echo "Topic: {$view->parent->getSubject()}"; ?>
+                    </strong></span>
+                    <span class="hide-on-med-and-down card-meta col l6 right-align">
+                        <?php echo "Poster: {$view->parentUsername}
+                                    <br> Post Date: {$view->parent->getTimestamp()}"; ?>
+                    </span>
+                    <span class="hide-on-large-only card-meta col l6 center">
+                        <strong>
+                        <?php echo $view->parent->getSubject() ?>
+                    </strong></span>
+                    <span class="hide-on-large-only card-meta col l6 left-align">
+                        <?php echo "Poster: {$view->parentUsername}
+                                    <br> Post Date: {$view->parent->getTimestamp()}"; ?>
+                    </span>
+                </div>
+                <?php
+                if(isset($_SESSION['user']) && ($view->parentImg != null))
+                {
+                    echo "<div class=\"card-image\">";
+
+                    if(filter_var($view->parentImg, FILTER_VALIDATE_URL))
+                    {
+                        echo "<img src=\"{$view->parentImg}\">";
+                    }
+                    else{
+                        echo "<img src=\"Images/{$view->parentImg}\">";
+                    }
+                    echo "</div>";
+                }
+                elseif(!isset($_SESSION['user']) && ($view->parentImg != null))
+                {
+                    echo "<div class=\"card-image\">
+                          <img src=\"{$view->notlogged}\">
+                          </div>";
+                }else {
+
+                }
+                ?>
+                <div class="card-content grey lighten-3">
+                    <p><?php echo $view->parent->getPostBody()?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php
+    foreach ($view->children as $child)
+    {
+        // Due to the limitation of echo, ternary operator has been user for generated content
+        $imgOut = (!isset($_SESSION['user'])) && ($child->getImg() != null)
+            ? "<div class=\"card-image\">
+                              <img src=\"{$view->notlogged}\">
+                              </div>" : null;
+        $imgOutTwo = (isset($_SESSION['user'])) && ($child->getImg() != null)
+            ?  "<div class=\"card-image\">
+                              <img src=\"{$child->getImg()}\">
+                              </div>" : null;
+        $username = $view->post_d->fetchUsernameByID($child->getPosterID());
+        $timestamp = $view->post_d->fetchTimestampByID($child->getPostID());
+
+        echo "
+        <div class=\"container row\">
+        <div class=\"col s12 l12 black\"></div>
+        <div class=\"col s12 l8 offset-l6 pull-l4 center\">
+            <div class=\"card\">
+                <div class=\"card row center grey lighten-1 z-depth-2\">
+                        <span class=\"hide-on-med-and-down card-meta col l6 center-align\">
+                            <strong>Reply to: {$view->parentSubject}
+                    </strong></span>
+                    <span class=\"hide-on-med-and-down card-meta col l6 right-align\">
+                             Poster: {$username}
+                                        <br> Post Date: {$timestamp}
+                        </span>
+                    <span class=\"hide-on-large-only card-meta col l6 center-align\">
+                            <strong>Reply to: {$view->parentSubject}
+                    </strong></span>
+                    <span class=\"hide-on-large-only card-meta col l6 left-align\">
+                                     Poster: {$username}
+                                        <br> Post Date: {$timestamp} 
+                        </span>
+                </div>
+                $imgOut
+                $imgOutTwo 
+                <div class=\"card-content grey lighten-3\">
+                    <p>{$child->getPostBody()}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    ";
+    }
+?>
+<?php require('fixed/footer.phtml') ?>
+
+

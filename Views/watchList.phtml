@@ -1,0 +1,41 @@
+<?php require('fixed/header.phtml');?>
+    <div class="container" id="content-container">
+        <div class="collapsible collection-format">
+            <div class="row item-formatting">
+                <h6 class='white-text center-align'>Watchlist</h6>
+                <?php
+                if($view->posts == null)
+                {
+                    echo "<h6 class='white-text center-align'>Watchlist Empty</h6>";
+                }else{
+                    foreach($view->posts as $postData)
+                    {
+                        $view->result = $post_s->fetchUsernameByID($postData->getPosterID());
+                        $view->post_time = date("d/m/y g:i A", strtotime($postData->getTimestamp()));
+
+                        echo "<div class=\"col s12 m4\">
+                            <div class=\"card small red lighten-5\">
+                                <div class=\"card-content black-text row\">
+                                    <p class=\"col s12 l12\">{$postData->getSubject()}</p>
+                                    <div class='card-meta'>
+                                    <span class=\"left-align small col s12 l12 grey-text text-darken-2\">Author: 
+                                    <strong>{$view->result}</strong></span>
+                                    <span class=\"left-align small col s12 l12 grey-text text-darken-2\"> Posted: {$view->post_time} </span>
+                                    </div>
+                                    <div class=\"card-action col s12 l12\">
+                                        <form class =\"center card-button\" method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">
+                                            <input type=\"hidden\" name=\"post_id\" value=\"{$postData->getPostID()}\">
+                                            <button class=\"btn-large black\" type=\"submit\">View Post
+                                                <i class=\"material-icons right\">visibility</i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>";
+                    }
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+<?php require('fixed/footer.phtml') ?>

@@ -1,0 +1,77 @@
+<?php require('fixed/header.phtml');?>
+<div class="container row s12 l12" id="ls-header">
+    <div class="container">
+        <div class="input-field row black-text">
+            <form name="name" method="post"  action="<?php echo ($_SERVER['PHP_SELF']); ?>">
+                <h6 class="center col s12 l12 black-text"><strong>Directory</strong></h6>
+                <p class="center col s12 l12 black-text"><strong>New chats will appear in Active Chats</strong></p>
+                </div>
+                <!--NEW PEOPLE-->
+                <div class="col s12 l12 white z-depth-3">
+                    <div class="contact-container" id="directory">
+                        <!--INSERT DIR RESULTS HERE-->
+                    </div>
+                </div><br>
+                <div class="input-field col s12 l12 black-text">
+                    <span class="center">Active Chats:</span>
+                    <!-- JS This -->
+                    <select class="browser-default z-depth-1" id="active-chats">
+                        <option value="" disabled selected> Choose Active Chat (if any)
+                    </select>
+                </div>
+                <input id="userID" type="hidden" value="<?php echo $view->userID;?>">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="collapsible collection-format white lighten-1">
+        <div>
+            <div class="collapsible-header black white-text z-depth-1" id="chat-change">
+                <i class="material-icons" id="icon">chat</i>
+                <span class="badge white-text">Chat with: <strong id="chat-to"></strong></span>
+            </div>
+        </div>
+        <div class="row item-formatting" id='chat-add'>
+            <div class="container row" id="register-fields">
+
+                <div class="col s12 l12 grey lighten-1 z-depth-3" id="chat-box">
+                    <div class="col s12 l12" id="chat-fill">
+                    </div>
+                </div><br>
+
+
+                <div class="col s12 l12">
+                    <p id="typing" disabled></p>
+                </div><br>
+
+                <form name="name" method="post" enctype="text/plain">
+                    <div class="input-field col s12">
+                        <textarea id="user-msg" class="materialize-textarea" name="msg_body" maxlength="1000"></textarea>
+                        <label for="area2">Chat</label>
+                        <input class="btn black right z-depth-2" type="button"
+                               name="submit" value="send Msg" id="msg-send">
+                    </div><br>
+                </form>
+                <!-- IMAGE HIDDEN - INCOMPLETE -->
+                <form name="name" method="post" enctype="multipart/form-data">
+                    <div class="input-field col s12 l12 hiddendiv">
+                        <div class="file-field input-field">
+                            <div class="btn black">
+                                <span>IMG FILE</span>
+                                <input type="file" name="imageIn" id="img-in">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path" type="text" id="file-path" placeholder="files must be less than 2mb">
+                            </div>
+                            <input class="btn black right z-depth-2" type="button"
+                                   name="submit" value="send img" id="img-send">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/js/liveChat.js"></script>
+</div>
+<?php require('fixed/footer.phtml') ?>

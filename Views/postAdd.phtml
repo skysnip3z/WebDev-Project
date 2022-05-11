@@ -1,0 +1,64 @@
+<?php require('fixed/header.phtml');?>
+
+    <div class="row container" id="sp_container">
+        <div class="container col s12 l12">
+            <h6 class="center"><strong>Post Details Below:</strong></h6>
+        </div>
+        <div class="container row" id="register-fields">
+            <form name="name" method="post" enctype="multipart/form-data" action="<?php echo ($_SERVER['PHP_SELF']); ?>">
+
+                <div class="input-field col s6 l6">
+                    <!-- utilised browser default as framework uses jquery -->
+                    <select class="browser-default z-depth-1" name="subcat">
+                        <option value="1" selected>Craft - Leveling</option>
+                        <option value="2">Craft - Endgame</option>
+                    </select>
+                </div><br>
+
+                <div class="input-field col s6 l6">
+                    <textarea id="area" class="materialize-textarea" name="subject" data-length="120" required></textarea>
+                    <label for="area">Your post subject...</label>
+                </div><br>
+
+
+                <div class="input-field col s12">
+                    <textarea id="area2" class="materialize-textarea" name="post_body" data-length="1500" required></textarea>
+                    <label for="area2">Write your post here...</label>
+                </div><br>
+
+                <!--Honeypot-->
+                <div class="input-field col s12 hide">
+                    <textarea id="area3" class="materialize-textarea" name="post_important" data-length="1500" hidden></textarea>
+                </div><br>
+
+                <div class="input-field col s12 l12">
+                    <div class="file-field input-field">
+                        <div class="btn black">
+                            <span>File</span>
+                            <input type="file" name="imageIn" id="imageIn">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path" type="text">
+                        </div>
+                    </div>
+                </div>
+                <?php
+                if (isset($_POST['submit'])){
+                    switch ($view->error) {
+                        case $view->error = "err_file_format":
+                            echo "<div class='left red-text container s12 l12' id='error_message2'>
+                                  <p><strong>File is not an image</strong></p></div>";
+                            break;
+                    }
+                }
+                ?>
+
+                <div class="container right" id="btn-under-alert">
+                    <input class="btn-large black right z-depth-2" type="submit"
+                           name="submit" value="Post">
+                </div>
+            </form>
+        </div>
+    </div>
+
+<?php require('fixed/footer.phtml') ?>

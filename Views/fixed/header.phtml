@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Crafting Forum">
+    <meta name="author" content="Ali Hassan">
+
+    <!-- Materialize Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen"/>
+    <!-- Own Stylesheet -->
+    <link href="/css/my-style.css" type="text/css" rel="stylesheet" media="screen"/>
+    <!-- Materialize CSS Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Title of the open tab in a browser -->
+    <title>Crafting Forum - <?php echo $view->pageTitle; ?></title>
+</head>
+<body id="load">
+        <!-- Title of the open tab in a browser -->
+        <header class="nav-content">
+            <nav class="black">
+                <div id="top-nav" class="container nav-wrapper">
+                    <a href="index.php" class="brand-logo center">Xen Crafts</a>
+
+                    <!-- Nav when view is more than 992px -->
+                    <ul class="left hide-on-med-and-down">
+                        <?php if(isset($_SESSION['user']))
+                         {
+                             echo "<li><a class='btn-block' href='index.php'>Home, $view->username</a></li>";
+                             echo "<li><a href='watchlist.php'>Watchlist</a></li>";
+                             echo "<li><a href='postAdd.php'>Create Post</a></li>";
+                         }
+                         else{
+                             echo "<li><a class='btn-block' href='index.php'>Home</a></li>";
+                        }?>
+
+                    </ul>
+                     <ul class="right hide-on-med-and-down">
+                         <?php if(isset($_SESSION['user']))
+                         {
+                             echo "<li><a href='chat.php'>Chats</a></li>";
+                             echo "<li><a href='search.php'>Search</a></li>";
+                             echo "<li><a href='../../logout.php'>Log Out</a></li>";
+                         }
+                         else{
+                             // Used to trigger my modal login form
+                             echo "<li><a href='search.php'>Search</a></li>";
+                             echo "<li><a href='signup.php'>Sign Up</a></li>";
+                             echo "<li><a href='login.php'>Login</a></li>";
+                         }
+                         ?>
+                     </ul>
+
+                    <!-- Sidenav when view is v>992px  -->
+                     <ul id="slide-out" class="sidenav black">
+                        <li><a href="index.php">Home</a></li>
+                         <?php if(isset($_SESSION['user']))
+                         {
+                             echo "<li><a href='search.php'>Search</a></li>";
+                             echo "<li><a href='postAdd.php'>Create Post</a></li>";
+                             echo "<li><a href='chat.php'>Chats</a></li>";
+                             echo "<li><a href='watchlist.php'>Watchlist</a></li>";
+                             echo "<li><a class='btn-block' href='../../logout.php'> Log Out</a></li>";
+                         }
+                         else{
+                             echo "<li><a href='search.php'>Search</a></li>";
+                             echo "<li><a href='signup.php'>Sign Up</a></li>";
+                             echo "<li><a href='login.php'>Login</a></li>";
+                         }
+                         ?>
+                     </ul>
+
+                    <!-- Use of materialise sidenav for v<992px navigation -->
+                     <a href="#" data-target="slide-out" class="sidenav-trigger right">
+                         <i class="material-icons">menu</i></a>
+                </div>
+            </nav>
+        </header>
+        <!-- Incomplete starting div tag to be completed through a php stitch with footer -->
+        <main>

@@ -1,0 +1,52 @@
+<?php require('fixed/header.phtml');?>
+<div class="container row" id="login-container">
+    <div class="container col s12 l12" id="ls-header">
+        <h6 class="center black-text"><strong>Login</strong></h6>
+    </div>
+    <div class="container">
+        <form name="name" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+            <div class="input-field col s12 l12">
+                <i class="material-icons prefix">mail</i>
+                <input type="text" name="email" id="email" required>
+                <label for="email">Email</label>
+            </div><br>
+
+            <div class="input-field col s12 l12">
+                <i class="material-icons prefix">lock</i>
+                <input type="password" name="password" id="password" required>
+                <label for="password">Password</label>
+                <?php
+
+                if (isset($_POST['submit']) && $view->err_email == true)
+                {
+                    echo "<div class='left red-text' id='error_message'>
+                              <p><strong>email incorrect</strong></p></div>";
+                }
+                else if (isset($_POST['submit']) && $view->err_password == true)
+                {
+                    echo "<div class='left red-text container s12 l12' id='error_message'>
+                              <p><strong>password incorrect</strong></p></div>";
+                }
+                else{
+                    echo "<div></div>";
+                }
+                ?>
+            </div><br>
+
+            <!-- Extra input to sieve bots -->
+            <div class="input-field hide col s12 l12">
+                <i class="material-icons prefix">lock</i>
+                <input type="password" name="pwd" id="pwd">
+                <label for="pwd">Password</label>
+            </div><br>
+
+            <div class="right btn-block col s12 l12">
+                 <input class="btn black right z-depth-2" type="submit"
+                         name="submit" value="Login">
+                 <a class="black right white-text btn z-depth-2"
+                         id="register-pos" href="signup.php">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</div>
+<?php require('fixed/footer.phtml') ?>

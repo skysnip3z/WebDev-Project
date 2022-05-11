@@ -1,0 +1,79 @@
+<?php require('fixed/header.phtml') ?>
+    <div class="container s12 l12" id="ls-header">
+        <h6 class="center helper-text"><strong>Our most recent posts at Xen Crafts, feel free to utilise our search feature for more</strong></h6>
+    </div>
+    <div class="container" id="content-container">
+        <div class="collapsible collection-format">
+            <div>
+                <div class="collapsible-header black white-text z-depth-1">
+                    <i class="material-icons">build</i>Crafting
+                    <span class="badge white-text"><strong>Leveling</strong></span></div>
+            </div>
+            <div class="row item-formatting">
+                <?php
+                foreach($view->subcat_one as $postData)
+                {
+                    $view->result = $post_d->fetchUsernameByID($postData->getPosterID());
+                    $view->post_time = date("d/m/y g:i A", strtotime($postData->getTimestamp()));
+
+                    echo "<div class=\"col s12 m4\">
+                        <div class=\"card small white darken-1\">
+                            <div class=\"card-content black-text row\">
+                                <p class=\"col s12 l12\">{$postData->getSubject()}</p>
+                                <div class='card-meta'>
+                                <span class=\"left-align small col s12 l12 grey-text text-darken-2\">Author: 
+                                <strong>{$view->result}</strong></span>
+                                <span class=\"left-align small col s12 l12 grey-text text-darken-2\"> Posted: {$view->post_time} </span>
+                                </div>
+                                <div class=\"card-action col s12 l12\">
+                                    <form class =\"center card-button\" method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">
+                                        <input type=\"hidden\" name=\"post_id\" value=\"{$postData->getPostID()}\">
+                                        <button class=\"btn-large black\" type=\"submit\">View Post
+                                            <i class=\"material-icons right\">visibility</i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>";
+                } ?>
+            </div>
+        </div>
+
+        <div class="collapsible collection-format">
+            <div>
+                <div class="collapsible-header black white-text z-depth-1">
+                    <i class="material-icons">build</i>Crafting
+                    <span class="badge white-text"><strong>Endgame</strong></span></div>
+            </div>
+            <div class="row item-formatting">
+                <?php
+                foreach($view->subcat_two as $postData)
+                {
+                    $view->result = $post_d->fetchUsernameByID($postData->getPosterID());
+                    $view->post_time = date("d/m/y g:i A", strtotime($postData->getTimestamp()));
+
+                    echo "<div class=\"col s12 m4\">
+                        <div class=\"card small white darken-1\">
+                            <div class=\"card-content black-text row\">
+                                <p class=\"col s12 l12\">{$postData->getSubject()}</p>
+                                <div class='card-meta'>
+                                <span class=\"left-align small col s12 l12 grey-text text-darken-2\">Author: 
+                                <strong>{$view->result}</strong></span>
+                                <span class=\"left-align small col s12 l12 grey-text text-darken-2\"> Posted: {$view->post_time} </span>
+                                </div>
+                                <div class=\"card-action col s12 l12\">
+                                    <form class =\"center card-button\" method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">
+                                        <input type=\"hidden\" name=\"post_id\" value=\"{$postData->getPostID()}\">
+                                        <button class=\"btn-large black\" type=\"submit\">View Post
+                                            <i class=\"material-icons right\">visibility</i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>";
+                } ?>
+            </div>
+        </div>
+    </div>
+
+<?php require('fixed/footer.phtml') ?>

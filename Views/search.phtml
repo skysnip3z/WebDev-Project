@@ -1,0 +1,76 @@
+<?php require('fixed/header.phtml');?>
+    <div class="container s12 l12" id="ls-header">
+        <div class="container">
+            <div class="input-field row black-text">
+                <form name="name" method="post"  action="<?php echo ($_SERVER['PHP_SELF']); ?>">
+
+                    <div class="input-field col s9 l9 black-text">
+                        <i class="material-icons prefix">search</i>
+                        <input id="searchBar" type="text" placeholder="default subject search..." name="search" maxlength="200">
+                        <label for="searchBar">Write any keyword(s)</label>
+                    </div>
+                    <div class="col s3 l3" id="btn-under-alert">
+                        <input class="btn black right-align z-depth-2" type="submit"
+                               name="submit" value="Search">
+                    </div>
+
+                    <!--TEST PARAGRAPH-->
+                    <div class="col s3 l3" id="autocomplete">
+                        <p id="search-result"></p>
+                    </div>
+
+                    <div class="input-field col s12 l12 black-text">
+                        <span>Post Category:</span>
+                        <select class="browser-default z-depth-1" name="subcat">
+                            <option value="0" selected>None</option>
+                            <option value="1">Craft - Leveling</option>
+                            <option value="2">Craft - Endgame</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="content-container">
+        <div class="collapsible collection-format">
+            <div>
+                <div class="collapsible-header black white-text z-depth-1" id="live-change">
+                    <i class="material-icons">search</i>Top 15 Search Results Shown Below
+                    <span class="badge white-text"><strong>Posts</strong></span></div>
+                </div>
+            <div class="row item-formatting" id='live-add'>
+                <?php
+                if($view->posts == null)
+                {}else{
+                    foreach($view->posts as $postData)
+                    {
+                        $view->result = $post_s->fetchUsernameByID($postData->getPosterID());
+                        $view->post_time = date("d/m/y g:i A", strtotime($postData->getTimestamp()));
+
+                        echo "<div class=\"col s12 m4\">
+                                <div class=\"card small blue lighten-5\">
+                                    <div class=\"card-content black-text row\">
+                                        <p class=\"col s12 l12\">{$postData->getSubject()}</p>
+                                        <div class='card-meta'>
+                                        <span class=\"left-align small col s12 l12 grey-text text-darken-2\">Author: 
+                                        <strong>{$view->result}</strong></span>
+                                        <span class=\"left-align small col s12 l12 grey-text text-darken-2\"> Posted: {$view->post_time} </span>
+                                        </div>
+                                        <div class=\"card-action col s12 l12\">
+                                            <form class =\"center card-button\" method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">
+                                                <input type=\"hidden\" name=\"post_id\" value=\"{$postData->getPostID()}\">
+                                                <button class=\"btn-large black\" type=\"submit\">View Post
+                                                    <i class=\"material-icons right\">visibility</i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>";
+                    }
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+<script src="/js/liveSearch.js"></script>
+<?php require('fixed/footer.phtml') ?>
